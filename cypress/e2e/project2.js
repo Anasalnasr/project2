@@ -13,7 +13,6 @@ describe('Randomly Visit Two Websites and Write City Names', () => {
     const arabicCityNames = ['دبي', 'جدة'];
     const randomArabicIndex = Math.floor(Math.random() * arabicCityNames.length);
 
-    // Generate a random number for the number of adults (1 or 2)
 
     cy.visit(websites[randomIndex])
       .then(() => {
@@ -28,14 +27,27 @@ describe('Randomly Visit Two Websites and Write City Names', () => {
             cy.get('[data-testid="AutoCompleteInput"]').type(arabicCityNames[randomArabicIndex]);
             cy.get('[data-testid="AutoCompleteResultItem0"]').click();
 
+            
+            cy.get('[data-testid="HotelSearchBox__SearchButton"]').click();
+
+
           } else if (language.includes('العربية')) {
 
             cy.get('[data-testid="AutoCompleteInput"]').type(aracountries[rancountries]);
             cy.get('[data-testid="AutoCompleteResultItem0"]').click();
+
+            cy.get('[data-testid="HotelSearchBox__ReservationSelect_Select"]').click();
+          }
+           const options = ["1 room, 2 adults", "1 room, 1 adult"];
+
+            const randomIndex = Math.floor(Math.random() * options.length);
+
+            cy.get('[data-testid="HotelSearchBox__ReservationSelect_Option"]').eq(randomIndex).click();
+
             
             cy.get('[data-testid="HotelSearchBox__SearchButton"]').click();
             
-          }
+         
         });
 
        });
