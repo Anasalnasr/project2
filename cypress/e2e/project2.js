@@ -14,7 +14,6 @@ describe('Randomly Visit Two Websites and Write City Names', () => {
     const randomArabicIndex = Math.floor(Math.random() * arabicCityNames.length);
 
     // Generate a random number for the number of adults (1 or 2)
-    const numberOfAdults = Math.random() < 0.5 ? 1 : 2;
 
     cy.visit(websites[randomIndex])
       .then(() => {
@@ -33,12 +32,12 @@ describe('Randomly Visit Two Websites and Write City Names', () => {
 
             cy.get('[data-testid="AutoCompleteInput"]').type(aracountries[rancountries]);
             cy.get('[data-testid="AutoCompleteResultItem0"]').click();
-
+            
+            cy.get('[data-testid="HotelSearchBox__SearchButton"]').click();
+            
           }
         });
 
-        // Select the number of adults
-        cy.get('[data-testid="HotelSearchBox__ReservationSelect_Select"]').select(numberOfAdults.toString());
+       });
+        });
       });
-  });
-});
